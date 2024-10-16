@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>sample_EC</title>
+    <title>sample_EC-管理者</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -13,9 +13,9 @@
     <header>
       <div class="row mt-3 mb-3">
 
-      <% if customer_signed_in? %>
+      <% if admin_signed_in? %>
         <div class="offset-1">
-          <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
         </div>
       <% end %>
       </div>
