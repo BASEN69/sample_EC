@@ -11,19 +11,27 @@
   </head>
   <body>
     <header>
-      <div class="row mt-3 mb-3">
-
-      <% if customer_signed_in? %>
-        <div class="offset-1">
-          <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+      <div class="container">
+        <div class="row navber navber-expand-lg">
+          <div class="col">
+            <a class="navber-brand display-3" href="/">LOG</a>
+          </div>
+          <% if customer_signed_in? %>
+          <div class="offset-2 col ">
+            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+          </div>
+          <% end %>
         </div>
-      <% end %>
       </div>
     </header>
     <main>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
+      <div class="container">
+
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>
+
