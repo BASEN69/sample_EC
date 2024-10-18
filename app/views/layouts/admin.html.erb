@@ -11,13 +11,14 @@
   </head>
   <body>
     <header>
-      <div class="row mt-3 mb-3">
-
-      <% if admin_signed_in? %>
-        <div class="offset-1">
-          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+      <div class="container">
+        <div class="row navber navber-expand-lg">
+          <% if admin_signed_in? %>
+            <div class="offset-1 col pt-5">
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
       </div>
     </header>
     <main>
