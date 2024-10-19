@@ -12,13 +12,23 @@
   <body>
     <header>
       <div class="container">
-        <div class="row navber navber-expand-lg">
+        <div class="row navber navber-expand-lg navbar-dark bg-dark ">
           <div class="col">
             <a class="navber-brand display-3" href="/">LOG</a>
           </div>
           <% if customer_signed_in? %>
-          <div class="offset-2 col ">
-            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+          <div class="nav-item offset-3 col-2 p-4 text-center">
+            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-info" %>
+          </div>
+          <div class="nav-item col-2 p-4 text-center">
+            <%= link_to 'マイページ', mypage_path, class: "btn btn-success" %>
+          </div>
+          <% else %>
+          <div class="nav-item offset-3 col-2 p-4 text-center">
+            <%= link_to '新規登録', new_customer_registration_path, class: "btn btn-info" %>
+          </div>
+          <div class="nav-item col-2 p-4 text-center">
+            <%= link_to 'ログイン', customer_session_path, class: "btn btn-success" %>
           </div>
           <% end %>
         </div>

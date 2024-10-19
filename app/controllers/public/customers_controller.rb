@@ -1,11 +1,11 @@
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!, only: [:my_page, :new, :create, :edit]
+  before_action :authenticate_customer!, only: [:my_page, :edit]
 
   def my_page
-    @customer = current_user
+    @customer = current_customer
     render :show
   end
-  #変数として渡す@userを今ログインしているユーザーに指定（current_user）
+  #変数として渡す@customerを今ログインしているユーザーに指定（current_customer）
 
   def show
     @customer = Customer.find(params[:id])

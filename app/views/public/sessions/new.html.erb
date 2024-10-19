@@ -1,16 +1,23 @@
-<h2>Log in</h2>
+<h2 class="offset-1 mb-5">ログイン</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<%= form_with model: @customer, url: customer_session_path do |f| %>
+  <div class="row d-flex">
+    <div class="col-3">
+      <%= f.label :email,"メールアドレス" %>
+    </div>
+    <div class="form-group row col-6">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "email" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="row d-flex mt-3">
+    <div class="col-3">
+      <%= f.label :password,"パスワード" %>
+    </div>
+    <div class="form-group row col-6">
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "パスワード" %>
+    </div>
   </div>
-
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
@@ -18,9 +25,14 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="offset-3 col-4 mt-5">
+    <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+<div class="mt-5">
+  <h4>まだ登録していない方</h4>
+  <p><%= link_to 'こちら', new_customer_registration_path %>　からログインしてください</p>
+</div>
+
+
