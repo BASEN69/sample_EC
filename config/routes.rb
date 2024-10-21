@@ -22,7 +22,11 @@ Rails.application.routes.draw do
 
     root to: 'homes#top'
     get '/mypage', to: 'customers#my_page', as: 'mypage'
-    resources :customers
+    resources :customers do
+      member do
+        patch :withdraw
+      end
+    end
 
   end
 end

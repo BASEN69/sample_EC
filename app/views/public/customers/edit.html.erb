@@ -1,1 +1,88 @@
-edit
+<h2 class="offset-1 mb-5">登録内容の編集</h2>
+<% if @customer.errors.any? %>
+  <ul class="alert alert-danger" role="alert">
+    <h6 class="alert-heading">
+      <%= @customer.errors.count %>件のエラーが起きました
+    </h6>
+    <%= @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @customer do |f| %>
+
+  <div class="row d-flex">
+    <div class="col-3">
+      <p>名前</p>
+    </div>
+    <div class="form-group row col-4">
+      <div>
+        <%= f.text_field :first_name, class: "form-control", placeholder: "姓" %>
+      </div>
+    </div>
+    <div class="form-group row col-4">
+      <div>
+        <%= f.text_field :last_name, class: "form-control", placeholder: "名" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex">
+    <div class="col-3">
+      <p>フリガナ</p>
+    </div>
+    <div class="form-group row col-4">
+      <div>
+        <%= f.text_field :first_name_kana, class: "form-control", placeholder: "セイ" %>
+      </div>
+
+    </div>
+    <div class="form-group row col-4">
+      <div>
+        <%= f.text_field :last_name_kana, class: "form-control", placeholder: "メイ" %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row d-flex">
+    <div class="col-3">
+      <%= f.label :postal_code,"郵便番号" %>
+    </div>
+    <div class="form-group row col-6">
+      <%= f.text_field :postal_code, class: "form-control", placeholder: "0000000(ハイフン無し)" %>
+    </div>
+  </div>
+
+  <div class="row d-flex">
+    <div class="col-3">
+      <%= f.label :address,"住所" %>
+    </div>
+    <div class="form-group row col-8">
+      <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
+    </div>
+  </div>
+
+  <div class="row d-flex">
+    <div class="col-3">
+      <%= f.label :telephone_number,"電話番号" %>
+    </div>
+    <div class="form-group row col-6">
+      <%= f.text_field :telephone_number, class: "form-control", placeholder: "ハイフン無し" %>
+    </div>
+  </div>
+
+  <div class="row d-flex">
+    <div class="col-3">
+      <%= f.label :email,"メールアドレス" %>
+    </div>
+    <div class="form-group row col-6">
+      <%= f.text_field :email, class: "form-control", placeholder: "email" %>
+    </div>
+  </div>
+  <div class="offset-3 col-4 mt-3">
+    <%= f.submit "内容を更新", class: 'btn btn-success btn-block' %>
+  </div>
+<% end %>
+<%= link_to '退会する', withdraw_customer_path(current_customer),method: :patch, data: { confirm: '本当に退会しますか？' }, class: "btn btn-success" %>

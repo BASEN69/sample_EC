@@ -1,0 +1,42 @@
+<div>
+  <h4 class="offset-1">ジャンル一覧・追加</h4><br>
+  <% if @genre.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@genre.errors.count, "error") %> prohibited this genre from being saved:</h2>
+      <ul>
+        <% @genre.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_with model: @genre, url: admin_genres_path do |f| %>
+    <div class="col form-group row m-5">
+      <div class="col-2 form-group row">
+        <%= f.label :name, 'ジャンル名' %>
+      </div>
+      <div class="col-3 form-group row">
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="col-2 form-group row ml-3">
+        <%= f.submit '追加', class: 'btn btn-success' %>
+      </div>
+    </div>
+  <% end %>
+  <table class="col-5 table table-hover">
+    <thead>
+      <tr>
+        <th class="pl-4">ジャンル</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @genres.each do |genre| %>
+        <tr>
+          <th><%= genre.name %></th>
+          <td><%= link_to '編集', edit_admin_genre_path(genre), class: 'btn btn-success' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

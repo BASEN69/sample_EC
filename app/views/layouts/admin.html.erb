@@ -12,19 +12,27 @@
   <body>
     <header>
       <div class="container">
-        <div class="row navber navber-expand-lg">
+        <div class="row navber navber-expand-lg navbar-dark bg-dark ">
+          <div class="col">
+            <div class="navber-brand display-3" style="color: white;">LOG</div>
+          </div>
           <% if admin_signed_in? %>
-            <div class="offset-1 col pt-5">
-              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+            <div class="nav-item offset-1 col-2 p-4">
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-info" %>
             </div>
+            <div class="nav-item col-2 p-4 text-center">
+            <%= link_to 'ジャンル一覧', admin_genres_path, class: "btn btn-info" %>
+          </div>
           <% end %>
         </div>
       </div>
     </header>
     <main>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
+      <div class="container">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>
