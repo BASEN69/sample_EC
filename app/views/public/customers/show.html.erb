@@ -1,1 +1,48 @@
-マイページ
+<div class="offset-1 display-4">
+  <p><span style="background-color: gray;">マイページ</span></p>
+</div>
+<div class="row">
+  <div class="col-2 m-3 d-flex justify-content-center align-items-center">
+    <h3><b>登録情報</b></h3>
+  </div>
+  <div class="col-2 m-3">
+    <%= link_to '編集する', edit_customer_path(@customer), class: 'btn btn-success' %>
+  </div>
+</div>
+<table class="col-8 table table-bordered mt-3" style="border: 2px solid black;">
+  <tbody>
+    <tr>
+      <th class="col-2 table-secondary" style="border: 2px solid black;">氏名</th>
+      <td class="col-5" style="border: 2px solid black;"><%= @customer.first_name %> <%= @customer.last_name %></td>
+    </tr>
+    <tr>
+      <th class="col-2 table-secondary" style="border: 2px solid black;">カナ</th>
+      <td class="col-5" style="border: 2px solid black;"><%= @customer.first_name_kana %> <%= @customer.last_name_kana %></td>
+    </tr>
+    <tr>
+      <th class="col-2 table-secondary" style="border: 2px solid black;">郵便番号</th>
+      <td class="col-5" style="border: 2px solid black;"><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <th class="col-2 table-secondary" style="border: 2px solid black;">住所</th>
+      <td class="col-5" style="border: 2px solid black;"><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th class="col-2 table-secondary" style="border: 2px solid black;">電話番号</th>
+      <td class="col-5" style="border: 2px solid black;"><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <th class="col-2 table-secondary" style="border: 2px solid black;">メールアドレス</th>
+      <td class="col-5" style="border: 2px solid black;"><%= @customer.email %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row mt-3">
+  <div class="col-2 m-2"><h4><b>配送先</b></h4></div>
+  <div class="m-2"><%= link_to '一覧を見る', root_path, class: 'btn btn-primary' %></div>
+</div>
+<div class="row mt-3">
+  <div class="col-2 m-2"><h4><b>注文履歴</b></h4></div>
+  <div class="m-2"><%= link_to '一覧を見る', root_path, class: 'btn btn-primary' %></div>
+</div>
