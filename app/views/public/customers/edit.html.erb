@@ -44,8 +44,6 @@
       </div>
     </div>
   </div>
-
-
   <div class="row d-flex">
     <div class="col-3">
       <%= f.label :postal_code,"郵便番号" %>
@@ -54,7 +52,6 @@
       <%= f.text_field :postal_code, class: "form-control", placeholder: "0000000(ハイフン無し)" %>
     </div>
   </div>
-
   <div class="row d-flex">
     <div class="col-3">
       <%= f.label :address,"住所" %>
@@ -63,7 +60,6 @@
       <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
     </div>
   </div>
-
   <div class="row d-flex">
     <div class="col-3">
       <%= f.label :telephone_number,"電話番号" %>
@@ -72,7 +68,6 @@
       <%= f.text_field :telephone_number, class: "form-control", placeholder: "ハイフン無し" %>
     </div>
   </div>
-
   <div class="row d-flex">
     <div class="col-3">
       <%= f.label :email,"メールアドレス" %>
@@ -85,4 +80,4 @@
     <%= f.submit "内容を更新", class: 'btn btn-success btn-block' %>
   </div>
 <% end %>
-<%= link_to '退会する', withdraw_customer_path(current_customer),method: :patch, data: { confirm: '本当に退会しますか？' }, class: "btn btn-success" %>
+<%= link_to '退会する', withdraw_customer_path(current_customer),method: :patch, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger" %>

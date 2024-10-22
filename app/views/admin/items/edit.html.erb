@@ -1,0 +1,66 @@
+<div>
+  <h4><span style="background-color: gray;">商品の編集</span></h4><br>
+
+  <%= form_with model: @item, url: admin_item_path(@item), method: :patch, local: true do |f| %>
+    <div class="row d-flex">
+      <div class="col-3">
+        <%= f.label :image, '商品画像' %>
+      </div>
+      <div class="form-group row col-6">
+        <%= f.file_field :image, placeholder: "ファイルを選択" %>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <div class="col-3">
+        <%= f.label :name, '商品名' %>
+      </div>
+      <div class="form-group row col-6">
+        <%= f.text_field :name, class: "form-control", placeholder: "商品名" %>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <div class="col-3">
+        <%= f.label :introduction, '商品説明' %>
+      </div>
+      <div class="form-group row col-6">
+        <%= f.text_area :introduction, class: "form-control", placeholder: "商品の説明文" %>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <div class="col-3">
+        <%= f.label :genre_id, 'ジャンル' %>
+      </div>
+      <div class="form-group row col-6">
+        <%= f.collection_select :genre_id, Genre.all, :id, :name,
+          { prompt: '--選択してください' },
+          { class: 'form-select  mb-3' } %>
+      </div>
+    </div>
+    <div class="row d-flex mb-4">
+      <div class="col-3">
+        <%= f.label :price, '税抜価格' %>
+      </div>
+      <div class="col-5">
+        <%= f.text_field :price, class: "form-control", placeholder: "金額" %>
+      </div>
+      <div class="col-1 pt-1">円</div>
+    </div>
+    <div class="row d-flex">
+      <div class="col-3"><p>販売ステータス</p></div>
+      <div class="col-3">
+        <%= f.radio_button :is_active, :true %>
+        <%= f.label :is_active_true, '販売' %>
+      </div>
+      <div class="col-3">
+        <%= f.radio_button :is_active, :false %>
+        <%= f.label :is_active_false, '販売停止' %>
+      </div>
+    </div>
+    <div class="offset-3 col-4 mt-3">
+      <%= f.submit "内容を更新", class: 'btn btn-success btn-block' %>
+    </div>
+    <% end %>
+    <div class="offset-8 col-2">
+      <%= link_to '削除', admin_item_path(@item), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %>
+    </div>
+</div>

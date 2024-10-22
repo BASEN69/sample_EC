@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     resources :orders, only: [:destroy, :index, :show]
     resources :addresses
-    resources :items
+    resources :items, only: [:new, :index, :create, :edit, :update, :destroy, :show]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -19,9 +19,10 @@ Rails.application.routes.draw do
       registrations: "public/registrations",
       sessions: 'public/sessions'
     }
-
     root to: 'homes#top'
+    resources :items, only: [:index, :show]
     get '/mypage', to: 'customers#my_page', as: 'mypage'
+    #論理的退会のルートが以下
     resources :customers do
       member do
         patch :withdraw

@@ -7,9 +7,6 @@ class Public::CustomersController < ApplicationController
   end
   #変数として渡す@customerを今ログインしているユーザーに指定（current_customer）
 
-  def show
-    @customer = Customer.find(params[:id])
-  end
 
   def edit
     @customer = Customer.find(params[:id])
