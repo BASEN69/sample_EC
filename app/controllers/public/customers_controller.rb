@@ -1,11 +1,11 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, only: [:my_page, :edit]
 
+  #変数として渡す@customerを今ログインしているユーザーに指定（current_customer）
   def my_page
     @customer = current_customer
     render :show
   end
-  #変数として渡す@customerを今ログインしているユーザーに指定（current_customer）
 
 
   def edit

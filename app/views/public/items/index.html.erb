@@ -1,1 +1,30 @@
-aa
+<div class="row">
+  <div class="col-2">
+    <h5>ジャンル検索</h5>
+    <ul class="list-group">
+      <% Genre.all.each do |genre| %>
+        <li class="list-group-item"><%= genre.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-10">
+    <h2>商品一覧<small>（全<%= @items.count %>件）</small></h2><br>
+    <div class="row">
+      <% @items.each do |item| %>
+        <div class="col-3 m-1 d-flex flex-column">
+          <div class="flex-grow-1"　style="width: 100%　display: flex; justify-content: center; align-items: center;">
+            <% if item.image.attached? %>
+              <%= image_tag item.image, class: "img-fluid mb-2" %>
+            <% else %>
+              <%= image_tag 'no_image.jpg', class: "img-fluid mb-2" %>
+            <% end %>
+          </div>
+          <div class="text-center">
+            <p><%= item.name %></p>
+            <p>￥<%= item.add_tax_price.to_s(:delimited) %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
