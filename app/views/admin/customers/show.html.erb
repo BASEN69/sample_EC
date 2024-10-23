@@ -1,0 +1,41 @@
+<div>
+  <div>
+    <h4><span style="background-color:gray;"><%= @customer.first_name + @customer.last_name %>さんの会員情報</span></h4>
+  </div>
+  <div>
+    <div class="row mt-5">
+      <div class="col-4">
+        <p>会員ID</p>
+        <p>氏名</p>
+        <p>フリガナ</p>
+        <p>郵便番号</p>
+        <p>住所</p>
+        <p>電話番号</p>
+        <p>メールアドレス</p>
+        <p>会員ステータス</p>
+      </div>
+      <div class="col-8">
+        <p><%= @customer.id %></p>
+        <p><%= @customer.first_name %><%= @customer.last_name %></p>
+        <p><%= @customer.first_name_kana %><%= @customer.last_name_kana %></p>
+        <p><%= @customer.postal_code %></p>
+        <p><%= @customer.address %></p>
+        <p><%= @customer.telephone_number %></p>
+        <p><%= @customer.email %></p>
+        <% if @customer.is_active? %>
+          <p class="text-success">有効</p>
+        <% else %>
+          <p class="text-muted">無効</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="offset-1 col-3">
+        <%= link_to '編集する', edit_admin_customer_path(@customer), class: 'btn btn-success' %>
+      </div>
+      <div class="col-4">
+        <%= link_to '注文一覧を見る', admin_customers_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

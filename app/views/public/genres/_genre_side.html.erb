@@ -1,0 +1,7 @@
+<h5>ジャンル</h5>
+<ul class="list-group">
+  <% Genre.all.each do |genre| %>
+    <li class="list-group-item"><%= link_to genre_path(genre) do %>
+    <%= genre.name %><% end %></li>
+  <% end %>
+</ul>

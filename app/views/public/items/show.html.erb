@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-2">
+    <%= render 'public/genres/genre_side' %>
+  </div>
+  <div class="col-10">
+    <div class="row">
+      <div class="col-4">
+        <% if @item.image.attached? %>
+          <%= image_tag @item.image, class: "img-fluid mb-2" %>
+        <% else %>
+          <%= image_tag 'no_image.jpg', class: "img-fluid mb-2" %>
+        <% end %>
+      </div>
+      <div class="offset-1 col-7">
+        <div class="col-12 mt-3">
+          <h3><%= @item.name %></h3>
+        </div>
+        <div class="col-12 mt-3">
+          <p><%= @item.introduction %></p>
+        </div>
+        <div class="col-12 mt-5">
+          <h5>￥<%= @item.add_tax_price.to_s(:delimited) %><small>(税込)</small></h5>
+        </div>
+        <% if @item.is_active? %>
+          <div class="col-12 mt-4 row">
+            <div class="col-6">
+              個数選択
+            </div>
+            <div class="col-6">
+              <%= link_to 'カートに入れる', root_path, class: 'btn btn-success' %>
+            </div>
+          </div>
+        <% else %>
+          <p class="muted mt-4">販売停止中</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
