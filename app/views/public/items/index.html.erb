@@ -6,7 +6,7 @@
     <h2>商品一覧<small>（全<%= @items.count %>件）</small></h2><br>
     <div class="row">
       <% @items.each do |item| %>
-        <div class="col-3 m-1 d-flex flex-column">
+        <div class="col-3  d-flex flex-column">
           <div class="flex-grow-1"　style="width: 100%　display: flex; justify-content: center; align-items: center;">
             <% if item.image.attached? %>
               <%= image_tag item.image, class: "img-fluid mb-2" %>

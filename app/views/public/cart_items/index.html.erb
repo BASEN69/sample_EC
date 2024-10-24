@@ -1,0 +1,57 @@
+<div>
+  <div class="row">
+    <div class="col-4 mb-4">
+      <h4><span style="background-color:gray;">ショッピングカート</span></h4>
+    </div>
+    <div class="offset-5 col-2">
+      <%= link_to 'カート内を空にする', destroy_all_cart_items_path, method: :delete, data: { confirm: '本当にすべてのアイテムを削除しますか？' }, class: 'btn btn-danger' %>
+    </div>
+  </div>
+  <div class="col">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="col-1">商品名</th>
+          <th class="col-3"></th>
+          <th class="col-2">単価(税込)</th>
+          <th class="col-2">数量</th>
+          <th class="col-2">小計</th>
+          <th class="col-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <th class="align-middle">
+                <% if cart_item.item.image.attached? %>
+                  <%= image_tag cart_item.item.image, style: 'max-height: 100px;', class: "img-fluid" %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', style: 'max-height: 100px;', class: "img-fluid" %>
+                <% end %>
+            </th>
+            <th class="text-center align-middle"><%= cart_item.item.name %></th>
+            <th class="text-center align-middle"><%= cart_item.item.add_tax_price.to_s(:delimited) %></th>
+            <th class="text-center align-middle"><%= cart_item.amount %></th>
+            <th class="text-center align-middle"><%= (cart_item.item.add_tax_price * cart_item.amount).to_s(:delimited) %></th>
+            <th class="text-center align-middle"><%= link_to '削除', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger', data: { confirm: '本当にこのアイテムを削除しますか？' } %></th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="offset-1 col-3">
+      <%= link_to '買い物を続ける', items_path, class: 'btn btn-primary' %>
+    </div>
+    <div class="offset-4 col-4">
+      <table>
+        <tbody>
+          <tr>
+            <th class="text-center align-middle col-5">合計金額</th>
+            <th class="text-center align-middle offset-2 col-5"><%= @cart_items.sum { |cart_item| cart_item.item.add_tax_price * cart_item.amount }.to_s(:delimited) %>円</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

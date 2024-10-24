@@ -21,17 +21,24 @@
         <div class="col-12 mt-5">
           <h5>￥<%= @item.add_tax_price.to_s(:delimited) %><small>(税込)</small></h5>
         </div>
-        <% if @item.is_active? %>
-          <div class="col-12 mt-4 row">
-            <div class="col-6">
-              個数選択
+        <% if customer_signed_in? %>
+          <% if @item.is_active? %>
+            <div class="col-12 mt-4 row">
+              <%= form_with(url: cart_items_path, method: :post) do |f| %>
+                <%= f.hidden_field :item_id, value: @item.id %>
+              <div class="col-4 form-group">
+                <%= f.select :amount, *[1..10].to_a, { prompt: '数量を選択'}, class: 'form-control' %>
+              </div>
+              <div class="col-5 form-group">
+                <%= f.submit 'カートに追加', class: 'btn btn-success' %>
+              </div>
+              <% end %>
             </div>
-            <div class="col-6">
-              <%= link_to 'カートに入れる', root_path, class: 'btn btn-success' %>
-            </div>
-          </div>
+          <% else %>
+            <p class="muted mt-4">販売停止中</p>
+          <% end %>
         <% else %>
-          <p class="muted mt-4">販売停止中</p>
+
         <% end %>
       </div>
     </div>

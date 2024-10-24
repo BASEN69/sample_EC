@@ -23,7 +23,11 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :items, only: [:index, :show]
     resources :genres, only: [:show]
-
+    resources :cart_items, only: [:create, :index, :update, :destroy] do
+      collection do
+        delete :destroy_all
+      end
+    end
     get 'customers/:id/my_page', to: 'customers#my_page', as: 'mypage'
     #論理的退会のルートが以下
     resources :customers do
