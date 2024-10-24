@@ -22,7 +22,7 @@
             <p class="text-light">ようこそ！<%= current_customer.first_name %>さん</p>
           </div>
           <div class="nav-item offset-1 col-2 p-4 text-center">
-            <%= link_to 'マイページ', mypage_path, class: "btn btn-success" %>
+            <%= link_to 'マイページ', mypage_path(current_customer), class: "btn btn-success" %>
           </div>
           <div class="nav-item col-2 p-4 text-center">
             <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-info" %>

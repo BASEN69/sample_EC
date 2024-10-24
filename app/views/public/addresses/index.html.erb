@@ -1,0 +1,63 @@
+<div>
+  <div class="offset-1">
+    <h4><span style="background-color: gray;">配送先登録/一覧</span></h4>
+  </div>
+  <div class="col-8 mt-5">
+    <%= form_with model: @new_address, url: customer_addresses_path do |f| %>
+      <div class="row d-flex">
+        <div class="col-3">
+          <%= f.label :postal_code,"郵便番号" %>
+        </div>
+        <div class="form-group row col-4">
+          <%= f.text_field :postal_code, class: "form-control", placeholder: "0000000(ハイフン無し)" %>
+        </div>
+      </div>
+      <div class="row d-flex">
+        <div class="col-3">
+          <%= f.label :address,"住所" %>
+        </div>
+        <div class="form-group row col-7">
+          <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
+        </div>
+      </div>
+      <div class="row d-flex">
+        <div class="col-3">
+          <%= f.label :name,"宛先" %>
+        </div>
+        <div class="form-group row col-4">
+          <%= f.text_field :name, class: "form-control", placeholder: "宛先名" %>
+        </div>
+        <div class="offset-2 col-3">
+          <%= f.submit "新規登録", class: 'btn btn-success btn-block' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-7 mt-5">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="col-2">郵便番号</th>
+          <th class="col-4">住所</th>
+          <th class="col-2">宛名</th>
+          <th class="col-4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td>
+              <div class="row">
+                <div class="col-5"><%= link_to '編集', edit_customer_address_path(@customer, address), class: 'btn btn-success' %></div>
+                <div class="col-5"><%= link_to '削除', customer_address_path(@customer, address), method: :delete, data: { confirm: 'この配送先を削除しますか？'}, class: 'btn btn-danger' %></div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

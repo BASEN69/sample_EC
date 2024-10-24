@@ -17,6 +17,11 @@
           <div class="text-center">
             <p><%= link_to item.name, item_path(item) %></p>
             <p>￥<%= item.add_tax_price.to_s(:delimited) %></p>
+            <% if item.is_active? %>
+              <p class="text-success">販売中</p>
+            <% else %>
+              <p class="text-muted">販売停止中</p>
+            <% end %>
           </div>
         </div>
       <% end %>
