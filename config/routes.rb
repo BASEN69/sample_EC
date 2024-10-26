@@ -28,6 +28,9 @@ Rails.application.routes.draw do
         delete :destroy_all
       end
     end
+    resources :orders, only: [:new]
+    post 'orders/confirm', to: 'orders#confirm', as: 'confirm'
+    resources :order_details
     get 'customers/:id/my_page', to: 'customers#my_page', as: 'mypage'
     #論理的退会のルートが以下
     resources :customers do

@@ -1,0 +1,45 @@
+<div>
+  <div class="offset-1">
+    <h4><span style="background-color: gray;">注文情報入力</span></h4>
+  </div>
+  <%= form_with model: @order, url: confirm_path do |f| %>
+    <div>
+      <div class="mt-4">
+        <h5>支払方法</h5>
+        <div class="ml-5">
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0), class: "form-check-input" %>
+          <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card], class: "form-check-label" %><br>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1), class: "form-check-input" %>
+          <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer], class: "form-check-label" %>
+        </div>
+        <div class="mt-3">
+          <h5>お届け先</h5>
+          <div class="ml-5">
+            <%= f.radio_button :address_selection, "member_address", checked: true, class: 'form-check-input' %>
+            <%= f.label :address_selection, sanitize("ご自身の住所<br>〒#{current_customer.postal_code}<br>#{current_customer.address}<br>#{current_customer.first_name} #{current_customer.last_name}"), class: "form-check-label" %>
+          </div>
+          <div class="ml-5 mt-3">
+            <%= f.radio_button :address_selection, "registered_address", class: 'form-check-input' %>
+            <%= f.label :address_selection, '登録済みの住所を使用', class: 'form-check-label' %><br>
+            <%= f.select :registered_address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display), prompt: '住所を選択', class: 'form-control' %>
+          </div>
+          <div class="ml-5 mt-3">
+            <%= f.radio_button :address_selection, "new_address", class: 'form-check-input' %>
+            <%= f.label :address_selection, "新しいお届け先", class: 'form-check-label' %>
+          </div>
+          <div class="ml-5 mt-3">
+            <%= f.label :postal_code, "郵便番号（ハイフン無し）" %>
+            <%= f.text_field :postal_code, class: 'form-control col-3' %>
+            <%= f.label :address, "住所" %>
+            <%= f.text_field :address, class: 'form-control col-5' %>
+            <%= f.label :name, "宛名" %>
+            <%= f.text_field :name, class: 'form-control col-3' %>
+          </div>
+          <div class="ml-3 mt-3">
+            <%= f.submit "確認に進む", class: 'btn btn-primary' %>
+          </div>
+        </div>
+
+    </div>
+  <% end %>
+</div>
