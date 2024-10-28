@@ -32,7 +32,6 @@
             <%= f.radio_button :select_address, "new_address", class: 'form-check-input' %>
             <%= f.label :select_address, "新しいお届け先", class: 'form-check-label' %>
           </div>
-
           <div class="ml-5 mt-3">
             <%= f.label :postal_code, "郵便番号（ハイフン無し）" %>
             <%= f.text_field :postal_code, class: 'form-control col-3' %>
@@ -45,8 +44,8 @@
           <div class="ml-3 mt-3">
             <%= f.submit "確認に進む", class: 'btn btn-primary' %>
           </div>
-
-
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
