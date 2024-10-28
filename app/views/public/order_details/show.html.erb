@@ -8,20 +8,20 @@
       <table class="table table-bordered" style="border: 2px solid black;">
         <tbody>
           <tr>
-            <th>注文日</th>
+            <th class="col-3">注文日</th>
             <td><%= l(@order.created_at, format: :short) %></td>
           </tr>
           <tr>
-            <th>配送先</th>
-            <td></td>
+            <th class="col-3">配送先</th>
+            <td>〒<%= @order.postal_code %><br><%= @order.address %><br><%= @order.name %></td>
           </tr>
           <tr>
-            <th>支払方法</th>
-            <td></td>
+            <th class="col-3">支払方法</th>
+            <td><%= @order.payment_method_i18n %></td>
           </tr>
           <tr>
-            <th>ステータス</th>
-            <td></td>
+            <th class="col-3">ステータス</th>
+            <td><%= @order.status_i18n %></td>
           </tr>
         </tbody>
       </table>
