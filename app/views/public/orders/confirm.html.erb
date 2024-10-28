@@ -1,0 +1,85 @@
+<div>
+  <div class="offset-1">
+    <h4><span style="backgroundcolor: gray;">注文情報確認</span></h4>
+  </div>
+  <div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="col-1">商品名</th>
+          <th class="col-3"></th>
+          <th class="col-2">単価(税込)</th>
+          <th class="col-2">数量</th>
+          <th class="col-2">小計</th>
+          <th class="col-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <th class="align-middle">
+                <% if cart_item.item.image.attached? %>
+                  <%= image_tag cart_item.item.image, style: 'max-height: 100px;', class: "img-fluid" %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', style: 'max-height: 100px;', class: "img-fluid" %>
+                <% end %>
+            </th>
+            <th class="text-center align-middle"><%= cart_item.item.name %></th>
+            <th class="text-center align-middle"><%= cart_item.item.add_tax_price.to_s(:delimited) %></th>
+            <th class="text-center align-middle"><%= cart_item.amount %></th>
+            <th class="text-center align-middle"><%= (cart_item.item.add_tax_price * cart_item.amount).to_s(:delimited) %></th>
+            <th class="text-center align-middle"><%= link_to '削除', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger', data: { confirm: '本当にこのアイテムを削除しますか？' } %></th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= form_with model: @order, local: true do |f| %>
+    <div class="col-xs-3">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="confirm-td">送料</td>
+              <td>
+                  ¥<%= @order.shipping_cost.to_s(:delimited) %>円
+                  <%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
+              </td>
+            </tr>
+            <tr>
+              <td class="confirm-td">商品合計</td>
+              <td>
+                ¥<%= @cart_items.sum { |cart_item| cart_item.item.add_tax_price * cart_item.amount }.to_s(:delimited) %>円
+              </td>
+            </tr>
+            <tr>
+              <td class="confirm-td">請求金額</td>
+              <td>
+                ¥<%= (@cart_items.sum { |cart_item| cart_item.item.add_tax_price * cart_item.amount } + @order.shipping_cost).to_s(:delimited) %>円
+                <%= f.hidden_field :total_payment, :value => (@cart_items.sum { |cart_item| cart_item.item.add_tax_price * cart_item.amount } + @order.shipping_cost) %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+  <div class="row">
+    <h3>支払方法</h3>
+      <h4><%= @order.payment_method_i18n %></h4>
+      <%= f.hidden_field :payment_method, :value => @order.payment_method %></br>
+    <h3>お届け先</h3>
+      <%= @order.postal_code.to_s.insert(3, "-") %></br>
+      <%= f.hidden_field :postal_code, :value => @order.postal_code %>
+      <%= @order.address %></br>
+      <%= f.hidden_field :address, :value => @order.address %>
+      <%= @order.name %></br>
+      <%= f.hidden_field :name, :value => @order.name %>
+
+  </div>
+    <div class="text-right">
+      <%= link_to "情報入力へ戻る", new_order_path %>
+    </div>
+    <div class="text-center">
+      <%= f.submit "購入を確定する", class: "btn btn-success btn-lg text-center" %>
+    </div>
+    <% end %>
+</div>

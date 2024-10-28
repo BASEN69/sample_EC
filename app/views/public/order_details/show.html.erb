@@ -1,0 +1,33 @@
+<div>
+  <div>
+    <h4><span style="backgroundcolor: gray;">注文履歴詳細</span></h4>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>注文情報</p>
+      <table class="table table-bordered" style="border: 2px solid black;">
+        <tbody>
+          <tr>
+            <th>注文日</th>
+            <td><%= l(@order.created_at, format: :short) %></td>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>支払方法</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+
+    </div>
+  </div>
+</div>
