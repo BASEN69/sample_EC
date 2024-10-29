@@ -18,7 +18,7 @@
             <div class="navber-brand display-3" style="color: white;">LOG</div>
           </div>
           <% if admin_signed_in? %>
-            <div class="nav-item offset-1 col-2 p-4">
+            <div class="nav-item  col-2 p-4">
               <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-info" %>
             </div>
             <div class="nav-item col-2 p-4 text-center">
@@ -29,6 +29,9 @@
             </div>
             <div class="nav-item col-2 p-4 text-center">
               <%= link_to '会員一覧', admin_customers_path, class: "btn btn-info" %>
+            </div>
+            <div class="nav-item col-2 p-4 text-center">
+              <%= link_to '注文一覧', admin_order_details_path, class: "btn btn-info" %>
             </div>
           <% end %>
         </div>

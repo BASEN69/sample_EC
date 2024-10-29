@@ -1,1 +1,25 @@
-aa
+<div>
+  <div class="offset-1">
+    <h4><span style="backgroundcolor: gray;">注文履歴一覧</span></h4>
+  </div>
+  <table class="table table-bordered" style="border: 2px solid black;">
+    <thead>
+      <tr>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.each do |order| %>
+        <tr>
+          <td><%= link_to l(order.created_at, format: :short), admin_order_detail_path(order) %></td>
+          <td><%= order.customer.name %></td>
+          <td><%= order.order_details.sum(:amount) %></td>
+          <td><%= order.status_i18n %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

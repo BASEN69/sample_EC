@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
 
   enum payment_method: { credit_card: 0, transfer: 1 }
-  enum status: { pay_weit: 0, pay_check: 1, make_now: 2, finish: 3 }
+  enum status: { pay_weit: 0, pay_check: 1, make_now: 2, sendup: 3, finish: 4 }
 
   validates :customer_id, presence: true
   validates :postal_code, presence: true

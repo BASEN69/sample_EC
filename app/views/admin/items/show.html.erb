@@ -3,9 +3,9 @@
   <div class="row">
     <div class="col-6 d-flex">
       <% if @item.image.attached? %>
-        <%= image_tag @item.image %>
+        <%= image_tag @item.image, class: "img-fluid" %>
       <% else %>
-        <%= image_tag 'no_image.jpg' %>
+        <%= image_tag 'no_image.jpg', class: "img-fluid" %>
       <% end %>
     </div>
     <div class="col-6 row">

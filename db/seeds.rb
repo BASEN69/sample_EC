@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.find_or_create_by!(email: "admin@exmple.com") do |admin|
-  admin.password = "asasas1969"
+  admin.password = "asasas123"
 end
 
 Customer.find_or_create_by!(email: "as@exmple.com") do |customer|
-  customer.password = "asasas1919"
+  customer.password = "asasas12"
   customer.first_name = "川越"
   customer.last_name = "太郎"
   customer.first_name_kana = "カワゴエ"

@@ -27,7 +27,46 @@
       </table>
     </div>
     <div class="col-4">
-
+      <p>請求金額</p>
+      <table class="table table-bordered" style="border: 2px solid black;">
+        <tbody>
+          <tr>
+            <th class="col-3">商品合計</th>
+            <td><%= @order.total_payment.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class="col-3">配送料</th>
+            <td><%= @order.shipping_cost.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class="col-3">ご請求金額</th>
+            <td><%= (@order.total_payment + @order.shipping_cost).to_s(:delimited) %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+  <div class="row col-10">
+    <p>注文内容</p>
+    <table class="table table-bordered" style="border: 2px solid black;">
+      <thead>
+        <tr>
+          <th class="col-6">商品</th>
+          <th class="col-2">単価（税込み）</th>
+          <th class="col-1">個数</th>
+          <th class="col-1">小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.item.add_tax_price.to_s(:delimited) %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= (order_detail.item.add_tax_price * order_detail.amount).to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      </table>
   </div>
 </div>
