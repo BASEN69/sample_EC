@@ -10,12 +10,16 @@ class Public::CartItemsController < ApplicationController
     else
       @cart_item.amount = params[:amount].to_i
     end
-
-    if @cart_item.save
-      flash[:notice] = "#{@cart_item.item.name}をカートに追加しました"
-      redirect_to cart_items_path
+    if @cart_item.amount > 0
+      if @cart_item.save
+        flash[:notice] = "#{@cart_item.item.name}をカートに追加しました"
+        redirect_to cart_items_path
+      else
+        flash[:alert] = "カートに追加できませんでした"
+        redirect_to items_path
+      end
     else
-      flash[:alert] = "カートに追加できませんでした"
+      flash[:alert] = '数量は1以上でお願いします'
       redirect_to items_path
     end
   end
