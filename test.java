@@ -1,6 +1,6 @@
 class Test {
-  
-  
+
+
   public static void main(String[] args) {
     printData(fullName("Kate", "Jones"), 27, 1.6, 50.0);
     printData(fullName("John", "Christopher", "Smith"), 65, 1.75, 80.0);
@@ -12,15 +12,17 @@ class Test {
     System.out.println("身長は" + height + "mです");
     System.out.println("体重は" + weight + "kgです");
     double bmi = bmi(height, weight);
-    System.out.println("BMIは" + bmi + "です");
-    
+    System.out.println("BMIは" + Math.round(bmi) + "です");
+
+
+
     // isHealthyメソッドの結果
     if (isHealthy(bmi)) {
       System.out.println("健康です");
     } else {
       System.out.println("健康ではありません");
     }
-    
+
   }
 
   public static String fullName(String firstName, String lastName) {
@@ -37,7 +39,7 @@ class Test {
 
   // isHealthyメソッド
   public static boolean isHealthy(double bmi) {
-    return 18.5 <= bmi && bmi < 25.0; 
+    return 18.5 <= bmi && bmi < 25.0;
   }
-  
+
 }
